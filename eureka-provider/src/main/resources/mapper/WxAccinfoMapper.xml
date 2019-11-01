@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.WxAccinfoMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.WxAccinfo">
+    <constructor>
+      <arg column="accno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="accname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="platkey" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="opertime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="state" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.WxAccinfo">
+    insert into wx_accinfo (accno, accname, cname, 
+      phone, platkey, summary, 
+      operno, opertime, state
+      )
+    values (#{accno,jdbcType=VARCHAR}, #{accname,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{platkey,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{operno,jdbcType=VARCHAR}, #{opertime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.WxAccinfo">
+    insert into wx_accinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accno != null">
+        accno,
+      </if>
+      <if test="accname != null">
+        accname,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="platkey != null">
+        platkey,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="operno != null">
+        operno,
+      </if>
+      <if test="opertime != null">
+        opertime,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accno != null">
+        #{accno,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null">
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="platkey != null">
+        #{platkey,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="operno != null">
+        #{operno,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null">
+        #{opertime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

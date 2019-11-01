@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.GjzTypeMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.GjzType">
+    <constructor>
+      <arg column="gjid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+    <resultMap id="row" type="com.lst.eurekaprovider.model.GjzType">
+        <result column="gjid" property="gjid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+        <result column="type" property="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.GjzType">
+    insert into t_gj_type (gjid, type)
+    values (#{gjid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
+  </insert>
+    <select id="list" resultMap="row" parameterType="com.lst.eurekaprovider.model.GjzType">
+        select * from t_gj_type where 1=1
+    </select>
+    <select id="load" resultMap="row" parameterType="java.lang.Integer">
+        select * from t_gj_type where gjid=#{gjid,jdbcType=INTEGER}
+    </select>
+    <update id="update" parameterType="com.lst.eurekaprovider.model.GjzType">
+        update t_gj_type set type=#{type,jdbcType=VARCHAR} where gjid=#{gjid,jdbcType=INTEGER}
+    </update>
+    <delete id="delete" parameterType="java.lang.Integer">
+       delete from t_gj_type where gjid=#{gjid,jdbcType=INTEGER}
+    </delete>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.GjzType">
+    insert into t_gj_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gjid != null">
+        gjid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gjid != null">
+        #{gjid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.PermissionRoleMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.PermissionRole">
+    <constructor>
+      <arg column="rrid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="pid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.PermissionRole">
+    insert into t_permission_role (rrid, pid, rid
+      )
+    values (#{rrid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.PermissionRole">
+    insert into t_permission_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rrid != null">
+        rrid,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="rid != null">
+        rid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rrid != null">
+        #{rrid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

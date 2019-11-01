@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.JgMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.Jg">
+    <constructor>
+      <arg column="jgid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="jgname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jgcz" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.Jg">
+    insert into t_jg (jgid, jgname, jgcz
+      )
+    values (#{jgid,jdbcType=INTEGER}, #{jgname,jdbcType=VARCHAR}, #{jgcz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.Jg">
+    insert into t_jg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jgid != null">
+        jgid,
+      </if>
+      <if test="jgname != null">
+        jgname,
+      </if>
+      <if test="jgcz != null">
+        jgcz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jgid != null">
+        #{jgid,jdbcType=INTEGER},
+      </if>
+      <if test="jgname != null">
+        #{jgname,jdbcType=VARCHAR},
+      </if>
+      <if test="jgcz != null">
+        #{jgcz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.RoleGnMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.RoleGn">
+    <constructor>
+      <arg column="rgid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="rid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gdesc" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="available" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.RoleGn">
+    insert into t_role_gn (rgid, rid, gdesc, 
+      available)
+    values (#{rgid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{gdesc,jdbcType=VARCHAR}, 
+      #{available,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.RoleGn">
+    insert into t_role_gn
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rgid != null">
+        rgid,
+      </if>
+      <if test="rid != null">
+        rid,
+      </if>
+      <if test="gdesc != null">
+        gdesc,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rgid != null">
+        #{rgid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="gdesc != null">
+        #{gdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

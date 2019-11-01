@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.SignsMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.Signs">
+    <constructor>
+      <arg column="accno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ostate" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="vouchertypeno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="voucherNo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="opertime" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.lst.eurekaprovider.model.Signs">
+      <result column="accno" property="accno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="type" property="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="ostate" property="ostate" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="vouchertypeno" property="vouchertypeno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="voucherNo" property="voucherNo" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="operno" property="operno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <result column="opertime" property="opertime" javaType="java.lang.String" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.Signs">
+    insert into wx_signs (accno, type, ostate, 
+      vouchertypeno, voucherNo, operno, 
+      opertime)
+    values (#{accno,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{ostate,jdbcType=VARCHAR}, 
+      #{vouchertypeno,jdbcType=VARCHAR}, #{voucherno,jdbcType=VARCHAR}, #{operno,jdbcType=VARCHAR}, 
+      #{opertime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.Signs">
+    insert into wx_signs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accno != null">
+        accno,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="ostate != null">
+        ostate,
+      </if>
+      <if test="vouchertypeno != null">
+        vouchertypeno,
+      </if>
+      <if test="voucherno != null">
+        voucherNo,
+      </if>
+      <if test="operno != null">
+        operno,
+      </if>
+      <if test="opertime != null">
+        opertime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accno != null">
+        #{accno,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ostate != null">
+        #{ostate,jdbcType=VARCHAR},
+      </if>
+      <if test="vouchertypeno != null">
+        #{vouchertypeno,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherno != null">
+        #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="operno != null">
+        #{operno,jdbcType=VARCHAR},
+      </if>
+      <if test="opertime != null">
+        #{opertime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="listAlla" resultMap="row" parameterType="com.lst.eurekaprovider.model.Signs">
+    select * from wx_signs where ostate=1
+  </select>
+  <select id="listAllb" resultMap="row" parameterType="com.lst.eurekaprovider.model.Signs">
+    select * from wx_signs where ostate=0
+  </select>
+  <select id="listAll" resultMap="row" parameterType="com.lst.eurekaprovider.model.Signs">
+    select * from wx_signs
+  </select>
+</mapper>

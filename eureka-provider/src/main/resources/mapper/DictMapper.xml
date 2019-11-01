@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.DictMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.Dict">
+    <constructor>
+      <arg column="did" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="dtype" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dcontent" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="djs" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.Dict">
+    insert into t_dict (did, dtype, dcontent, 
+      djs)
+    values (#{did,jdbcType=INTEGER}, #{dtype,jdbcType=VARCHAR}, #{dcontent,jdbcType=VARCHAR}, 
+      #{djs,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.Dict">
+    insert into t_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        did,
+      </if>
+      <if test="dtype != null">
+        dtype,
+      </if>
+      <if test="dcontent != null">
+        dcontent,
+      </if>
+      <if test="djs != null">
+        djs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="dtype != null">
+        #{dtype,jdbcType=VARCHAR},
+      </if>
+      <if test="dcontent != null">
+        #{dcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="djs != null">
+        #{djs,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

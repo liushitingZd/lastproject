@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lst.eurekaprovider.mapper.TreeNodeMapper" >
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.TreeNode" >
+    <constructor >
+      <idArg column="tree_node_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tree_node_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tree_node_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parent_node_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="position" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="icon" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="treeNode" type="com.lst.eurekaprovider.model.TreeNode" >
+      <id column="tree_node_id" property="treeNodeId" javaType="java.lang.Integer" />
+      <result column="tree_node_name" property="treeNodeName" javaType="java.lang.String" />
+      <result column="tree_node_type" property="treeNodeType" javaType="java.lang.Integer" />
+      <result column="parent_node_id" property="parentNodeId" javaType="java.lang.Integer" />
+      <result column="url" property="url" javaType="java.lang.String" />
+      <result column="position" property="position" javaType="java.lang.Integer" />
+      <result column="icon" property="icon" javaType="java.lang.String" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    tree_node_id, tree_node_name, tree_node_type, parent_node_id, url, position, icon
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_tree_node
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </select>
+  <!--查询父节点-->
+    <select id="listAll" resultMap="treeNode">
+      select * from t_tree_node where 1=1
+        and parent_node_id IS NULL
+    </select>
+  <!--查询子节点-->
+  <select id="listChirld" resultMap="treeNode"
+          parameterType="com.project.ssm.model.TreeNode">
+        select * from t_tree_node where 1=1 and parent_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_tree_node
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.project.ssm.model.TreeNode" >
+    insert into t_tree_node (tree_node_id, tree_node_name, tree_node_type, 
+      parent_node_id, url, position, 
+      icon)
+    values (#{treeNodeId,jdbcType=INTEGER}, #{treeNodeName,jdbcType=VARCHAR}, #{treeNodeType,jdbcType=INTEGER}, 
+      #{parentNodeId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, 
+      #{icon,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.project.ssm.model.TreeNode" >
+    insert into t_tree_node
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="treeNodeId != null" >
+        tree_node_id,
+      </if>
+      <if test="treeNodeName != null" >
+        tree_node_name,
+      </if>
+      <if test="treeNodeType != null" >
+        tree_node_type,
+      </if>
+      <if test="parentNodeId != null" >
+        parent_node_id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="treeNodeId != null" >
+        #{treeNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="treeNodeName != null" >
+        #{treeNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="treeNodeType != null" >
+        #{treeNodeType,jdbcType=INTEGER},
+      </if>
+      <if test="parentNodeId != null" >
+        #{parentNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.ssm.model.TreeNode" >
+    update t_tree_node
+    <set >
+      <if test="treeNodeName != null" >
+        tree_node_name = #{treeNodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="treeNodeType != null" >
+        tree_node_type = #{treeNodeType,jdbcType=INTEGER},
+      </if>
+      <if test="parentNodeId != null" >
+        parent_node_id = #{parentNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.ssm.model.TreeNode" >
+    update t_tree_node
+    set tree_node_name = #{treeNodeName,jdbcType=VARCHAR},
+      tree_node_type = #{treeNodeType,jdbcType=INTEGER},
+      parent_node_id = #{parentNodeId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      position = #{position,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR}
+    where tree_node_id = #{treeNodeId,jdbcType=INTEGER}
+  </update>
+</mapper>

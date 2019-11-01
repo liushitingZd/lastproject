@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lst.eurekaprovider.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.lst.eurekaprovider.model.User">
+    <constructor>
+      <arg column="uid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="usex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="utel" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upwd" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="uemail" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="uimage" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="utime" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.lst.eurekaprovider.model.User">
+    insert into t_user (uid, usex, utel, 
+      upwd, uemail, uimage, 
+      utime)
+    values (#{uid,jdbcType=VARCHAR}, #{usex,jdbcType=VARCHAR}, #{utel,jdbcType=VARCHAR}, 
+      #{upwd,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, #{uimage,jdbcType=VARCHAR}, 
+      #{utime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lst.eurekaprovider.model.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="usex != null">
+        usex,
+      </if>
+      <if test="utel != null">
+        utel,
+      </if>
+      <if test="upwd != null">
+        upwd,
+      </if>
+      <if test="uemail != null">
+        uemail,
+      </if>
+      <if test="uimage != null">
+        uimage,
+      </if>
+      <if test="utime != null">
+        utime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="usex != null">
+        #{usex,jdbcType=VARCHAR},
+      </if>
+      <if test="utel != null">
+        #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="upwd != null">
+        #{upwd,jdbcType=VARCHAR},
+      </if>
+      <if test="uemail != null">
+        #{uemail,jdbcType=VARCHAR},
+      </if>
+      <if test="uimage != null">
+        #{uimage,jdbcType=VARCHAR},
+      </if>
+      <if test="utime != null">
+        #{utime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

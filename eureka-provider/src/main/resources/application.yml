@@ -1,0 +1,13 @@
+# 端口号
+server:
+  port: 7201
+# ��������
+spring:
+  application:
+    name: eureka-provider
+# ����ע���뷢���������
+eureka:
+  client:
+    # ע�����ĵ�ַ
+    serviceUrl:
+      defaultZone: http://localhost:7101/eureka/,http://localhost:7102/eureka/,http://localhost:7103/eureka/
